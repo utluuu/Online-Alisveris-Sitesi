@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elektronik | TrendyShop Elite AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="elite-top-bar">
+        <div class="container-flex">
+            <span>⚡ Elektronik Ürünlerde %30'a Varan AI İndirimleri</span>
+            <div class="top-nav-links">
+                <a href="index.html">Ana Sayfa</a>
+                <a href="#" class="ai-mode"><i class="fas fa-microchip"></i> AI Teknoloji Asistanı Aktif</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="glass-header">
+        <div class="container-flex nav-main">
+            <a href="index.html" class="elite-logo">Trendy<span>Shop</span></a>
+            <div class="ai-search-container">
+                <input type="text" placeholder="Telefon, laptop veya aksesuar arayın...">
+                <button class="ai-search-btn"><i class="fas fa-wand-magic-sparkles"></i></button>
+            </div>
+            <div class="action-icons">
+                <div class="icon-group account-dropdown">
+                    <i class="far fa-user"></i><span>Hesabım</span>
+                    <div class="dropdown-content">
+                        <a href="login.html">Giriş Yap</a>
+                        <a href="register.html">Üye Ol</a>
+                        <hr>
+                        <a href="orders.html">Siparişlerim</a>
+                        <a href="ai-favorites.html">AI Favorilerim</a>
+                    </div>
+                </div>
+                <div class="icon-group favorites-dropdown">
+                    <i class="far fa-heart"></i>
+                    <span>Favoriler</span>
+                    <span class="favorites-dot">0</span>
+                    <div class="dropdown-content favorites-dropdown-content">
+                        <div class="dropdown-header">
+                            <h3>Favorilerim</h3>
+                            <span class="favorites-count">0 Ürün</span>
+                        </div>
+                        <div class="dropdown-items" id="favorites-list">
+                            <div class="empty-state">
+                                <i class="far fa-heart" style="font-size: 48px; color: var(--gray-400); margin-bottom: 15px;"></i>
+                                <p>Henüz favori ürününüz yok</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="icon-group cart cart-dropdown">
+                    <i class="fas fa-bag-shopping"></i>
+                    <span class="cart-dot">0</span>
+                    <span>Sepetim</span>
+                    <div class="dropdown-content cart-dropdown-content">
+                        <div class="dropdown-header">
+                            <h3>Sepetim</h3>
+                            <span class="cart-count">0 Ürün</span>
+                        </div>
+                        <div class="dropdown-items" id="cart-list">
+                            <div class="empty-state">
+                                <i class="fas fa-bag-shopping" style="font-size: 48px; color: var(--gray-400); margin-bottom: 15px;"></i>
+                                <p>Sepetiniz boş</p>
+                            </div>
+                        </div>
+                        <div class="dropdown-footer" id="cart-footer" style="display: none;">
+                            <div class="cart-total">
+                                <span>Toplam:</span>
+                                <span class="total-price">0 TL</span>
+                            </div>
+                            <button class="checkout-btn">Sepete Git</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="premium-hero tech-hero">
+        <div class="hero-text">
+            <span class="ai-badge">SMART TECH ANALYSIS</span>
+            <h1>Gelecek Bugün Başlıyor</h1>
+            <p>AI teknolojimiz ihtiyaçlarınıza ve bütçenize göre en uygun elektronik ürünleri belirledi.</p>
+            <button class="elite-btn" onclick="window.location.href='seckiler.html'">Teknolojileri Keşfet</button>
+        </div>
+    </section>
+
+    <nav class="luxury-nav">
+        <div class="container-flex cat-list">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="kadin.html">Kadın</a>
+            <a href="erkek.html">Erkek</a>
+            <a href="kozmetik.html">Kozmetik</a>
+            <a href="ayakkabi.html">Ayakkabı</a>
+            <a href="elektronik.html" class="active">Elektronik</a>
+            <a href="evYasam.html">Ev & Yaşam</a>
+            <a href="oneri.html" class="ai-link">Sana Özel Öneriler ✨</a>
+        </div>
+    </nav>
+
+    <main class="main-wrapper">
+        <div class="grid-header">
+            <h2>En Popüler Elektronik Ürünler</h2>
+            <a href="#">Tümünü Gör <i class="fas fa-chevron-right"></i></a>
+        </div>
+
+        <div class="luxury-grid">
+            <div class="elite-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop');">
+                    <span class="discount-tag ai-tag">AI SEÇİMİ</span>
+                    <button class="like-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="card-details">
+                    <span class="p-brand">TECH PRO</span>
+                    <h3 class="p-name">Akıllı Telefon Pro Max</h3>
+                    <div class="p-meta"><span class="p-rating">⭐ 4.9</span></div>
+                    <div class="price-wrapper"><span class="current-p">45.990 TL</span></div>
+                    <button class="add-btn-elite">Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="elite-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=400&fit=crop');">
+                    <span class="discount-tag">-%25</span>
+                </div>
+                <div class="card-details">
+                    <span class="p-brand">ULTRABOOK</span>
+                    <h3 class="p-name">Ultra İnce Laptop 16"</h3>
+                    <div class="p-meta"><span class="p-rating">⭐ 4.8</span></div>
+                    <div class="price-wrapper"><span class="current-p">32.500 TL</span></div>
+                    <button class="add-btn-elite">Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="elite-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=400&fit=crop');">
+                    <span class="discount-tag">YENİ</span>
+                </div>
+                <div class="card-details">
+                    <span class="p-brand">SOUND ELITE</span>
+                    <h3 class="p-name">Kablosuz Kulaklık Pro</h3>
+                    <div class="p-meta"><span class="p-rating">⭐ 4.9</span></div>
+                    <div class="price-wrapper"><span class="current-p">4.200 TL</span></div>
+                    <button class="add-btn-elite">Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="elite-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop');">
+                    <span class="discount-tag ai-tag">AI TAVSİYESİ</span>
+                </div>
+                <div class="card-details">
+                    <span class="p-brand">SMART WATCH</span>
+                    <h3 class="p-name">Akıllı Saat Series 10</h3>
+                    <div class="p-meta"><span class="p-rating">⭐ 4.7</span></div>
+                    <div class="price-wrapper"><span class="current-p">8.900 TL</span></div>
+                    <button class="add-btn-elite">Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="elite-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=400&fit=crop');">
+                    <span class="discount-tag">ÇOK SATAN</span>
+                </div>
+                <div class="card-details">
+                    <span class="p-brand">TABLET PRO</span>
+                    <h3 class="p-name">Tablet 12.9" Retina</h3>
+                    <div class="p-meta"><span class="p-rating">⭐ 4.8</span></div>
+                    <div class="price-wrapper"><span class="current-p">18.750 TL</span></div>
+                    <button class="add-btn-elite">Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="elite-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&h=400&fit=crop');">
+                    <span class="discount-tag">-%20</span>
+                </div>
+                <div class="card-details">
+                    <span class="p-brand">CAMERA PLUS</span>
+                    <h3 class="p-name">4K Video Kamera</h3>
+                    <div class="p-meta"><span class="p-rating">⭐ 4.6</span></div>
+                    <div class="price-wrapper"><span class="current-p">12.500 TL</span></div>
+                    <button class="add-btn-elite">Sepete Ekle</button>
+                </div>
+            </div>
+
+            
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Hakkımızda</h3>
+                <p>TrendyShop, AI teknolojisiyle kişiselleştirilmiş alışveriş deneyimi sunmaktadır. 2024'den beri milyonlarca müşteriye hizmet ediyoruz.</p>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Hızlı Linkler</h3>
+                <ul>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="seckiler.html">Sana Özel Seçkiler</a></li>
+                    <li><a href="oneri.html">Sana Özel Öneriler</a></li>
+                    <li><a href="orders.html">Siparişlerim</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Kategoriler</h3>
+                <ul>
+                    <li><a href="kadin.html">Kadın</a></li>
+                    <li><a href="erkek.html">Erkek</a></li>
+                    <li><a href="kozmetik.html">Kozmetik</a></li>
+                    <li><a href="ayakkabi.html">Ayakkabı</a></li>
+                    <li><a href="elektronik.html">Elektronik</a></li>
+                    <li><a href="evYasam.html">Ev & Yaşam</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Müşteri Hizmetleri</h3>
+                <ul>
+                    <li><a href="#iletisim">İletişim</a></li>
+                    <li><a href="#">Sıkça Sorulan Sorular</a></li>
+                    <li><a href="#">İade Politikası</a></li>
+                    <li><a href="#">Gizlilik Politikası</a></li>
+                    <li><a href="#">Kullanım Koşulları</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Bültene Abone Ol</h3>
+                <p>En yeni ürünler ve özel teklifler için e-posta adresini gir.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="E-posta adresin..." id="newsletter-email">
+                    <button onclick="subscribeNewsletter()">Abone Ol</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <span>Kabul Edilen Ödeme Yöntemleri:</span>
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-paypal"></i>
+            </div>
+            <p>&copy; 2024 TrendyShop Elite AI. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <!-- Contact Section Modal -->
+    <div id="contact-modal" class="contact-modal">
+        <div class="contact-modal-content">
+            <button class="contact-close" onclick="closeContactForm()">&times;</button>
+            <h2>Bize Ulaşın</h2>
+            <form onsubmit="sendContactForm(event)">
+                <input type="text" placeholder="Adınız" required>
+                <input type="email" placeholder="E-posta Adresiniz" required>
+                <input type="tel" placeholder="Telefon Numaranız">
+                <select required>
+                    <option value="">Konu Seçiniz</option>
+                    <option value="complaint">Şikayet</option>
+                    <option value="suggestion">Öneri</option>
+                    <option value="info">Bilgi</option>
+                    <option value="other">Diğer</option>
+                </select>
+                <textarea placeholder="Mesajınızı yazınız..." rows="6" required></textarea>
+                <button type="submit" class="submit-btn">Gönder</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

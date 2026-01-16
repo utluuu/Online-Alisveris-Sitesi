@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kozmetik | TrendyShop Elite AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="elite-top-bar">
+        <div class="container-flex">
+            <span>✨ Kozmetik Alışverişlerinde %50'ye Varan AI İndirimleri</span>
+            <div class="top-nav-links">
+                <a href="index.html">Ana Sayfa</a>
+                <a href="#" class="ai-mode"><i class="fas fa-sparkles"></i> AI Güzellik Danışmanı Aktif</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="glass-header">
+        <div class="container-flex nav-main">
+            <a href="index.html" class="elite-logo">Trendy<span>Shop</span></a>
+            <div class="ai-search-container">
+                <input type="text" placeholder="Parfüm, makyaj veya cilt bakımı arayın...">
+                <button class="ai-search-btn"><i class="fas fa-wand-magic-sparkles"></i></button>
+            </div>
+            <div class="action-icons">
+                <div class="icon-group account-dropdown">
+                    <i class="far fa-user"></i><span>Hesabım</span>
+                    <div class="dropdown-content">
+                        <a href="login.html">Giriş Yap</a>
+                        <a href="register.html">Üye Ol</a>
+                        <hr>
+                        <a href="orders.html">Siparişlerim</a>
+                        <a href="ai-favorites.html">AI Favorilerim</a>
+                    </div>
+                </div>
+                <div class="icon-group favorites-dropdown">
+                    <i class="far fa-heart"></i>
+                    <span>Favoriler</span>
+                    <span class="favorites-dot">0</span>
+                    <div class="dropdown-content favorites-dropdown-content">
+                        <div class="dropdown-header">
+                            <h3>Favorilerim</h3>
+                            <span class="favorites-count">0 Ürün</span>
+                        </div>
+                        <div class="dropdown-items" id="favorites-list">
+                            <div class="empty-state">
+                                <i class="far fa-heart" style="font-size: 48px; color: var(--gray-400); margin-bottom: 15px;"></i>
+                                <p>Henüz favori ürününüz yok</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="icon-group cart cart-dropdown">
+                    <i class="fas fa-bag-shopping"></i>
+                    <span class="cart-dot">0</span>
+                    <span>Sepetim</span>
+                    <div class="dropdown-content cart-dropdown-content">
+                        <div class="dropdown-header">
+                            <h3>Sepetim</h3>
+                            <span class="cart-count">0 Ürün</span>
+                        </div>
+                        <div class="dropdown-items" id="cart-list">
+                            <div class="empty-state">
+                                <i class="fas fa-bag-shopping" style="font-size: 48px; color: var(--gray-400); margin-bottom: 15px;"></i>
+                                <p>Sepetiniz boş</p>
+                            </div>
+                        </div>
+                        <div class="dropdown-footer" id="cart-footer" style="display: none;">
+                            <div class="cart-total">
+                                <span>Toplam:</span>
+                                <span class="total-price">0 TL</span>
+                            </div>
+                            <button class="checkout-btn">Sepete Git</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="premium-hero beauty-hero">
+        <div class="hero-text">
+            <span class="ai-badge">SMART BEAUTY ANALYSIS</span>
+            <h1>Cildinize Özel Seçimler</h1>
+            <p>Yapay zeka algoritmamız geçmiş alışverişlerinizi analiz ederek size en uygun cilt bakım rutinini oluşturdu.</p>
+            <button class="elite-btn" id="ai-routine-btn">Rutinimi Gör</button>
+        </div>
+    </section>
+
+    <nav class="luxury-nav">
+        <div class="container-flex cat-list">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="kadin.html">Kadın</a>
+            <a href="erkek.html">Erkek</a>
+            <a href="kozmetik.html" class="active">Kozmetik</a>
+            <a href="ayakkabi.html">Ayakkabı</a>
+            <a href="elektronik.html">Elektronik</a>
+            <a href="evYasam.html">Ev & Yaşam</a>
+            <a href="oneri.html" class="ai-link">Sana Özel Öneriler ✨</a>
+        </div>
+    </nav>
+
+    <main class="main-wrapper">
+        <div class="grid-header">
+            <h2>Haftanın En Çok Satanları</h2>
+            <a href="#">Tümünü Gör <i class="fas fa-chevron-right"></i></a>
+        </div>
+
+        <div class="luxury-grid">
+            <div class="elite-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop');">
+                    <span class="discount-tag ai-tag">AI CHOICE</span>
+                    <button class="like-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="card-details">
+                    <span class="p-brand">LUXURY CARE</span>
+                    <h3 class="p-name">Hyalüronik Asit Serum</h3>
+                    <div class="p-meta"><span class="p-rating">⭐ 4.9</span></div>
+                    <div class="price-wrapper"><span class="current-p">850 TL</span></div>
+                    <button class="add-btn-elite">Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="elite-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1612817288484-6f916006741a?w=400&h=400&fit=crop');">
+                    <span class="discount-tag">-%20</span>
+                </div>
+                <div class="card-details">
+                    <span class="p-brand">GLOW BEAUTY</span>
+                    <h3 class="p-name">Vitamin C Aydınlatıcı Serum</h3>
+                    <div class="p-meta"><span class="p-rating">⭐ 4.8</span></div>
+                    <div class="price-wrapper"><span class="current-p">720 TL</span></div>
+                    <button class="add-btn-elite">Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="elite-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1571875257727-256c39da42af?w=400&h=400&fit=crop');">
+                    <span class="discount-tag">YENİ</span>
+                </div>
+                <div class="card-details">
+                    <span class="p-brand">PURE SKIN</span>
+                    <h3 class="p-name">Makyaj Seti</h3>
+                    <div class="p-meta"><span class="p-rating">⭐ 4.7</span></div>
+                    <div class="price-wrapper"><span class="current-p">450 TL</span></div>
+                    <button class="add-btn-elite">Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="elite-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=400&h=400&fit=crop');">
+                    <span class="discount-tag ai-tag">AI SEÇİMİ</span>
+                </div>
+                <div class="card-details">
+                    <span class="p-brand">ELITE COSMETICS</span>
+                    <h3 class="p-name">Retinol Gece Kremi</h3>
+                    <div class="p-meta"><span class="p-rating">⭐ 4.9</span></div>
+                    <div class="price-wrapper"><span class="current-p">1.200 TL</span></div>
+                    <button class="add-btn-elite">Sepete Ekle</button>
+                </div>
+            </div>
+
+
+            <div class="elite-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop');">
+                    <span class="discount-tag ai-tag">AI TAVSİYESİ</span>
+                </div>
+                <div class="card-details">
+                    <span class="p-brand">GLOW BEAUTY</span>
+                    <h3 class="p-name">Peptid Göz Kremi</h3>
+                    <div class="p-meta"><span class="p-rating">⭐ 4.8</span></div>
+                    <div class="price-wrapper"><span class="current-p">680 TL</span></div>
+                    <button class="add-btn-elite">Sepete Ekle</button>
+                </div>
+            </div>
+
+            
+        </div>
+    </main>
+
+    <div id="ai-results-overlay" class="modal">
+        <div class="modal-content ai-analysis-card">
+            <span class="close" onclick="closeAIResults()">&times;</span>
+            <div id="ai-loading">
+                <i class="fas fa-circle-notch fa-spin fa-3x"></i>
+                <p style="margin-top: 15px;">AI Cilt Analizörü geçmiş verilerinizi ve cilt profilinizi analiz ediyor...</p>
+            </div>
+
+            <div id="ai-report" style="display: none;">
+                <h2 class="ai-header">✨ Size Özel Cilt Bakım Rutininiz</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 25px;">AI algoritmamız geçmiş alışverişlerinizi analiz ederek bu rutini oluşturdu.</p>
+                
+                <div class="routine-steps">
+                    <div class="step">
+                        <strong>1. Temizleme</strong><br>
+                        Çay Ağacı Yağı Temizleyici - Sabah ve akşam kullanın
+                    </div>
+                    <div class="step">
+                        <strong>2. Toner</strong><br>
+                        Niasinamid + Çinko Toner - Cildinizi dengeleyin
+                    </div>
+                    <div class="step">
+                        <strong>3. Serum</strong><br>
+                        Hyalüronik Asit Serum - Nemlendirme için ideal
+                    </div>
+                    <div class="step">
+                        <strong>4. Göz Bakımı</strong><br>
+                        Peptid Göz Kremi - İnce çizgileri önleyin
+                    </div>
+                    <div class="step">
+                        <strong>5. Güneş Koruma</strong><br>
+                        SPF 50+ Güneş Koruyucu - Her gün uygulayın
+                    </div>
+                </div>
+
+                <button class="add-btn-elite" onclick="addAllToCart()" style="margin-top: 25px;">
+                    Tümünü Sepete Ekle
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Hakkımızda</h3>
+                <p>TrendyShop, AI teknolojisiyle kişiselleştirilmiş alışveriş deneyimi sunmaktadır. 2024'den beri milyonlarca müşteriye hizmet ediyoruz.</p>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Hızlı Linkler</h3>
+                <ul>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="seckiler.html">Sana Özel Seçkiler</a></li>
+                    <li><a href="oneri.html">Sana Özel Öneriler</a></li>
+                    <li><a href="orders.html">Siparişlerim</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Kategoriler</h3>
+                <ul>
+                    <li><a href="kadin.html">Kadın</a></li>
+                    <li><a href="erkek.html">Erkek</a></li>
+                    <li><a href="kozmetik.html">Kozmetik</a></li>
+                    <li><a href="ayakkabi.html">Ayakkabı</a></li>
+                    <li><a href="elektronik.html">Elektronik</a></li>
+                    <li><a href="evYasam.html">Ev & Yaşam</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Müşteri Hizmetleri</h3>
+                <ul>
+                    <li><a href="#iletisim">İletişim</a></li>
+                    <li><a href="#">Sıkça Sorulan Sorular</a></li>
+                    <li><a href="#">İade Politikası</a></li>
+                    <li><a href="#">Gizlilik Politikası</a></li>
+                    <li><a href="#">Kullanım Koşulları</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Bültene Abone Ol</h3>
+                <p>En yeni ürünler ve özel teklifler için e-posta adresini gir.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="E-posta adresin..." id="newsletter-email">
+                    <button onclick="subscribeNewsletter()">Abone Ol</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <span>Kabul Edilen Ödeme Yöntemleri:</span>
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-paypal"></i>
+            </div>
+            <p>&copy; 2024 TrendyShop Elite AI. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <!-- Contact Section Modal -->
+    <div id="contact-modal" class="contact-modal">
+        <div class="contact-modal-content">
+            <button class="contact-close" onclick="closeContactForm()">&times;</button>
+            <h2>Bize Ulaşın</h2>
+            <form onsubmit="sendContactForm(event)">
+                <input type="text" placeholder="Adınız" required>
+                <input type="email" placeholder="E-posta Adresiniz" required>
+                <input type="tel" placeholder="Telefon Numaranız">
+                <select required>
+                    <option value="">Konu Seçiniz</option>
+                    <option value="complaint">Şikayet</option>
+                    <option value="suggestion">Öneri</option>
+                    <option value="info">Bilgi</option>
+                    <option value="other">Diğer</option>
+                </select>
+                <textarea placeholder="Mesajınızı yazınız..." rows="6" required></textarea>
+                <button type="submit" class="submit-btn">Gönder</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

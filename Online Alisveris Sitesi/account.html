@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hesabım | TrendyShop Elite AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .account-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .account-header {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: var(--elite-shadow);
+            text-align: center;
+        }
+        .account-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--electric-orange), #ff8533);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+            color: white;
+            font-weight: 800;
+        }
+        .account-header h1 {
+            margin: 0 0 10px 0;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--deep-navy);
+        }
+        .account-header p {
+            margin: 0;
+            color: var(--gray-400);
+        }
+        .account-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .account-menu-item {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--elite-shadow);
+            text-decoration: none;
+            color: var(--deep-navy);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .account-menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        .account-menu-item i {
+            font-size: 48px;
+            color: var(--electric-orange);
+            margin-bottom: 15px;
+        }
+        .account-menu-item h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .account-menu-item p {
+            margin: 0;
+            font-size: 14px;
+            color: var(--gray-400);
+        }
+        .logout-btn {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        .logout-btn:hover {
+            background: #fecaca;
+        }
+        .logout-btn i {
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body>
+    <div class="elite-top-bar">
+        <div class="container-flex">
+            <span>👤 Hesap Yönetimi</span>
+            <div class="top-nav-links">
+                <a href="index.html">Ana Sayfa</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="glass-header">
+        <div class="container-flex nav-main">
+            <a href="index.html" class="elite-logo">Trendy<span>Shop</span></a>
+            <div class="ai-search-container">
+                <input type="text" placeholder="AI ile akıllı arama yapın...">
+                <button class="ai-search-btn"><i class="fas fa-wand-magic-sparkles"></i></button>
+            </div>
+            <div class="action-icons">
+                <div class="icon-group account-dropdown">
+                    <i class="far fa-user"></i><span>Hesabım</span>
+                    <div class="dropdown-content">
+                        <a href="login.html">Giriş Yap</a>
+                        <a href="register.html">Üye Ol</a>
+                        <hr>
+                        <a href="orders.html">Siparişlerim</a>
+                        <a href="ai-favorites.html">AI Favorilerim</a>
+                    </div>
+                </div>
+                <div class="icon-group favorites-dropdown">
+                    <i class="far fa-heart"></i>
+                    <span>Favoriler</span>
+                    <span class="favorites-dot">0</span>
+                    <div class="dropdown-content favorites-dropdown-content">
+                        <div class="dropdown-header">
+                            <h3>Favorilerim</h3>
+                            <span class="favorites-count">0 Ürün</span>
+                        </div>
+                        <div class="dropdown-items" id="favorites-list">
+                            <div class="empty-state">
+                                <i class="far fa-heart" style="font-size: 48px; color: var(--gray-400); margin-bottom: 15px;"></i>
+                                <p>Henüz favori ürününüz yok</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="icon-group cart cart-dropdown">
+                    <i class="fas fa-bag-shopping"></i>
+                    <span class="cart-dot">0</span>
+                    <span>Sepetim</span>
+                    <div class="dropdown-content cart-dropdown-content">
+                        <div class="dropdown-header">
+                            <h3>Sepetim</h3>
+                            <span class="cart-count">0 Ürün</span>
+                        </div>
+                        <div class="dropdown-items" id="cart-list">
+                            <div class="empty-state">
+                                <i class="fas fa-bag-shopping" style="font-size: 48px; color: var(--gray-400); margin-bottom: 15px;"></i>
+                                <p>Sepetiniz boş</p>
+                            </div>
+                        </div>
+                        <div class="dropdown-footer" id="cart-footer" style="display: none;">
+                            <div class="cart-total">
+                                <span>Toplam:</span>
+                                <span class="total-price">0 TL</span>
+                            </div>
+                            <button class="checkout-btn">Sepete Git</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="account-container">
+        <div class="account-header">
+            <div class="account-avatar" id="userAvatar">U</div>
+            <h1 id="userName">Kullanıcı</h1>
+            <p id="userEmail">email@example.com</p>
+        </div>
+
+        <div class="account-menu">
+            <a href="orders.html" class="account-menu-item">
+                <i class="fas fa-shopping-bag"></i>
+                <h3>Siparişlerim</h3>
+                <p>Siparişlerinizi görüntüleyin ve takip edin</p>
+            </a>
+            <a href="ai-favorites.html" class="account-menu-item">
+                <i class="fas fa-brain"></i>
+                <h3>AI Favorilerim</h3>
+                <p>AI tarafından önerilen ürünler</p>
+            </a>
+            <a href="#" class="account-menu-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Adreslerim</h3>
+                <p>Teslimat adreslerinizi yönetin</p>
+            </a>
+            <a href="#" class="account-menu-item">
+                <i class="fas fa-heart"></i>
+                <h3>Favorilerim</h3>
+                <p>Beğendiğiniz ürünleri görüntüleyin</p>
+            </a>
+            <a href="#" class="account-menu-item">
+                <i class="fas fa-credit-card"></i>
+                <h3>Ödeme Yöntemleri</h3>
+                <p>Kartlarınızı yönetin</p>
+            </a>
+            <a href="#" class="account-menu-item logout-btn" onclick="handleLogout(); return false;">
+                <i class="fas fa-sign-out-alt"></i>
+                <h3>Çıkış Yap</h3>
+                <p>Hesabınızdan güvenli şekilde çıkış yapın</p>
+            </a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function handleLogout() {
+            localStorage.removeItem('currentUser');
+            localStorage.removeItem('rememberMe');
+            showNotification('Başarıyla çıkış yaptınız');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (currentUser) {
+                document.getElementById('userName').textContent = currentUser.name;
+                document.getElementById('userEmail').textContent = currentUser.email;
+                document.getElementById('userAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+            } else {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Hakkımızda</h3>
+                <p>TrendyShop, AI teknolojisiyle kişiselleştirilmiş alışveriş deneyimi sunmaktadır. 2024'den beri milyonlarca müşteriye hizmet ediyoruz.</p>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Hızlı Linkler</h3>
+                <ul>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="seckiler.html">Sana Özel Seçkiler</a></li>
+                    <li><a href="oneri.html">Sana Özel Öneriler</a></li>
+                    <li><a href="orders.html">Siparişlerim</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Kategoriler</h3>
+                <ul>
+                    <li><a href="kadin.html">Kadın</a></li>
+                    <li><a href="erkek.html">Erkek</a></li>
+                    <li><a href="kozmetik.html">Kozmetik</a></li>
+                    <li><a href="ayakkabi.html">Ayakkabı</a></li>
+                    <li><a href="elektronik.html">Elektronik</a></li>
+                    <li><a href="evYasam.html">Ev & Yaşam</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Müşteri Hizmetleri</h3>
+                <ul>
+                    <li><a href="#iletisim">İletişim</a></li>
+                    <li><a href="#">Sıkça Sorulan Sorular</a></li>
+                    <li><a href="#">İade Politikası</a></li>
+                    <li><a href="#">Gizlilik Politikası</a></li>
+                    <li><a href="#">Kullanım Koşulları</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Bültene Abone Ol</h3>
+                <p>En yeni ürünler ve özel teklifler için e-posta adresini gir.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="E-posta adresin..." id="newsletter-email">
+                    <button onclick="subscribeNewsletter()">Abone Ol</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <span>Kabul Edilen Ödeme Yöntemleri:</span>
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-paypal"></i>
+            </div>
+            <p>&copy; 2024 TrendyShop Elite AI. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <!-- Contact Section Modal -->
+    <div id="contact-modal" class="contact-modal">
+        <div class="contact-modal-content">
+            <button class="contact-close" onclick="closeContactForm()">&times;</button>
+            <h2>Bize Ulaşın</h2>
+            <form onsubmit="sendContactForm(event)">
+                <input type="text" placeholder="Adınız" required>
+                <input type="email" placeholder="E-posta Adresiniz" required>
+                <input type="tel" placeholder="Telefon Numaranız">
+                <select required>
+                    <option value="">Konu Seçiniz</option>
+                    <option value="complaint">Şikayet</option>
+                    <option value="suggestion">Öneri</option>
+                    <option value="info">Bilgi</option>
+                    <option value="other">Diğer</option>
+                </select>
+                <textarea placeholder="Mesajınızı yazınız..." rows="6" required></textarea>
+                <button type="submit" class="submit-btn">Gönder</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+

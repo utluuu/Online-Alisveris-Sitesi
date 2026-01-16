@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sepetim | TrendyShop Elite AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .cart-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 40px;
+        }
+        .cart-items {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--elite-shadow);
+        }
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .cart-header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--deep-navy);
+        }
+        .cart-item-count {
+            background: var(--electric-orange);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .cart-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            background: var(--gray-100);
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+        .cart-item-info {
+            flex: 1;
+        }
+        .cart-item-title {
+            font-weight: 600;
+            color: var(--deep-navy);
+            margin-bottom: 5px;
+        }
+        .cart-item-brand {
+            color: var(--electric-orange);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .cart-item-price {
+            font-weight: 700;
+            color: var(--deep-navy);
+            font-size: 18px;
+        }
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--gray-200);
+            background: white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--deep-navy);
+        }
+        .quantity-btn:hover {
+            background: var(--gray-50);
+        }
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            padding: 5px;
+        }
+        .cart-item-remove {
+            color: var(--gray-400);
+            cursor: pointer;
+            padding: 5px;
+        }
+        .cart-item-remove:hover {
+            color: #e53e3e;
+        }
+        .cart-summary {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--elite-shadow);
+            height: fit-content;
+        }
+        .summary-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin-bottom: 20px;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: var(--gray-600);
+        }
+        .summary-row.total {
+            border-top: 2px solid var(--gray-100);
+            padding-top: 15px;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--deep-navy);
+        }
+        .checkout-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--electric-orange), #ff8533);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 96, 0, 0.3);
+        }
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--gray-400);
+        }
+        .empty-cart i {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        .empty-cart h2 {
+            margin: 0 0 10px 0;
+            color: var(--gray-500);
+        }
+        .empty-cart p {
+            margin: 0 0 30px 0;
+        }
+        .empty-cart .shop-btn {
+            background: var(--electric-orange);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .empty-cart .shop-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 96, 0, 0.3);
+        }
+        .promo-code {
+            margin-bottom: 20px;
+        }
+        .promo-input {
+            display: flex;
+            gap: 10px;
+        }
+        .promo-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+        }
+        .promo-input button {
+            padding: 10px 20px;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--deep-navy);
+        }
+        .promo-input button:hover {
+            background: var(--gray-200);
+        }
+        @media (max-width: 768px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="elite-top-bar">
+        <div class="container-flex">
+            <span>🛒 Güvenli Ödeme</span>
+            <div class="top-nav-links">
+                <a href="index.html">Ana Sayfa</a>
+                <a href="#" class="ai-mode"><i class="fas fa-brain"></i> AI Modu Aktif</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="glass-header">
+        <div class="container-flex nav-main">
+            <a href="index.html" class="elite-logo">Trendy<span>Shop</span></a>
+            <div class="ai-search-container">
+                <input type="text" placeholder="AI ile akıllı arama yapın...">
+                <button class="ai-search-btn"><i class="fas fa-wand-magic-sparkles"></i></button>
+            </div>
+            <div class="action-icons">
+                <div class="icon-group account-dropdown">
+                    <i class="far fa-user"></i><span>Hesabım</span>
+                    <div class="dropdown-content">
+                        <a href="login.html">Giriş Yap</a>
+                        <a href="register.html">Üye Ol</a>
+                        <hr>
+                        <a href="orders.html">Siparişlerim</a>
+                        <a href="ai-favorites.html">AI Favorilerim</a>
+                    </div>
+                </div>
+                <div class="icon-group favorites-dropdown">
+                    <i class="far fa-heart"></i>
+                    <span>Favoriler</span>
+                    <span class="favorites-dot">0</span>
+                    <div class="dropdown-content favorites-dropdown-content">
+                        <div class="dropdown-header">
+                            <h3>Favorilerim</h3>
+                            <span class="favorites-count">0 Ürün</span>
+                        </div>
+                        <div class="dropdown-items" id="favorites-list">
+                            <div class="empty-state">
+                                <i class="far fa-heart" style="font-size: 48px; color: var(--gray-400); margin-bottom: 15px;"></i>
+                                <p>Henüz favori ürününüz yok</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="icon-group cart cart-dropdown">
+                    <i class="fas fa-bag-shopping"></i>
+                    <span class="cart-dot">0</span>
+                    <span>Sepetim</span>
+                    <div class="dropdown-content cart-dropdown-content">
+                        <div class="dropdown-header">
+                            <h3>Sepetim</h3>
+                            <span class="cart-count">0 Ürün</span>
+                        </div>
+                        <div class="dropdown-items" id="cart-list">
+                            <div class="empty-state">
+                                <i class="fas fa-bag-shopping" style="font-size: 48px; color: var(--gray-400); margin-bottom: 15px;"></i>
+                                <p>Sepetiniz boş</p>
+                            </div>
+                        </div>
+                        <div class="dropdown-footer" id="cart-footer" style="display: none;">
+                            <div class="cart-total">
+                                <span>Toplam:</span>
+                                <span class="total-price">0 TL</span>
+                            </div>
+                            <button class="checkout-btn">Sepete Git</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="luxury-nav">
+        <div class="container-flex cat-list">
+            <a href="kadin.html">Kadın</a><a href="erkek.html">Erkek</a><a href="kozmetik.html">Kozmetik</a>
+            <a href="ayakkabi.html">Ayakkabı</a><a href="elektronik.html">Elektronik</a><a href="evYasam.html">Ev & Yaşam</a>
+            <a href="oneri.html" class="ai-link">Sana Özel Öneriler ✨</a>
+        </div>
+    </nav>
+
+    <main class="main-wrapper">
+        <div class="cart-container">
+            <div class="cart-items">
+                <div class="cart-header">
+                    <h1>Sepetim</h1>
+                    <span class="cart-item-count" id="item-count">0 Ürün</span>
+                </div>
+
+                <div id="cart-items-list">
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h2>Sepetiniz Boş</h2>
+                        <p>Alışverişe başlamak için ürünleri keşfedin</p>
+                        <a href="index.html" class="shop-btn">Alışverişe Başla</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-summary">
+                <div class="summary-title">Sipariş Özeti</div>
+
+                <div class="promo-code">
+                    <div class="promo-input">
+                        <input type="text" placeholder="İndirim Kodu" id="promo-code">
+                        <button onclick="applyPromoCode()">Uygula</button>
+                    </div>
+                </div>
+
+                <div class="summary-row">
+                    <span>Ara Toplam</span>
+                    <span id="subtotal">0 TL</span>
+                </div>
+                <div class="summary-row">
+                    <span>Kargo</span>
+                    <span id="shipping">Ücretsiz</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Toplam</span>
+                    <span id="total">0 TL</span>
+                </div>
+
+                <button class="checkout-btn" onclick="proceedToPayment()">Ödemeye Geç</button>
+
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="index.html" style="color: var(--gray-400); text-decoration: none; font-size: 14px;">
+                        <i class="fas fa-arrow-left" style="margin-right: 5px;"></i>
+                        Alışverişe Devam Et
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Sepet verilerini localStorage'dan yükle
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function loadCart() {
+            const cartItemsList = document.getElementById('cart-items-list');
+            const itemCount = document.getElementById('item-count');
+            const subtotal = document.getElementById('subtotal');
+            const total = document.getElementById('total');
+
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h2>Sepetiniz Boş</h2>
+                        <p>Alışverişe başlamak için ürünleri keşfedin</p>
+                        <a href="index.html" class="shop-btn">Alışverişe Başla</a>
+                    </div>
+                `;
+                itemCount.textContent = '0 Ürün';
+                subtotal.textContent = '0 TL';
+                total.textContent = '0 TL';
+                return;
+            }
+
+            let totalItems = 0;
+            let totalPrice = 0;
+
+            cartItemsList.innerHTML = cart.map((item, index) => {
+                totalItems += item.quantity;
+                totalPrice += item.price * item.quantity;
+
+                return `
+                    <div class="cart-item">
+                        <div class="cart-item-image" style="background: ${item.bgColor || '#e2e8f0'};"></div>
+                        <div class="cart-item-info">
+                            <div class="cart-item-brand">${item.brand}</div>
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">${item.priceText}</div>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn" onclick="updateQuantity(${index}, ${item.quantity - 1})">-</button>
+                                <input type="number" class="quantity-input" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)">
+                                <button class="quantity-btn" onclick="updateQuantity(${index}, ${item.quantity + 1})">+</button>
+                                <button class="cart-item-remove" onclick="removeFromCart(${index})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            itemCount.textContent = `${totalItems} Ürün`;
+            subtotal.textContent = `${totalPrice.toLocaleString('tr-TR')} TL`;
+            total.textContent = `${totalPrice.toLocaleString('tr-TR')} TL`;
+        }
+
+        function updateQuantity(index, newQuantity) {
+            if (newQuantity <= 0) {
+                removeFromCart(index);
+                return;
+            }
+
+            cart[index].quantity = parseInt(newQuantity);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+            updateCartUI();
+        }
+
+        function applyPromoCode() {
+            const promoCode = document.getElementById('promo-code').value;
+            if (promoCode.toLowerCase() === 'ai10') {
+                alert('AI10 kodu uygulandı! %10 indirim kazandınız.');
+            } else {
+                alert('Geçersiz indirim kodu.');
+            }
+        }
+
+        function proceedToPayment() {
+            if (cart.length === 0) {
+                alert('Sepetiniz boş!');
+                return;
+            }
+
+            // Ödeme sayfasına yönlendirme
+            window.location.href = 'payment.html';
+        }
+
+        function updateCartUI() {
+            // Ana sayfadaki sepet ikonunu güncelle
+            const cartDots = document.querySelectorAll('.cart-dot');
+            const cartCounts = document.querySelectorAll('.cart-count');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+            cartDots.forEach(dot => {
+                if (totalItems > 0) {
+                    dot.textContent = totalItems;
+                    dot.style.display = 'flex';
+                } else {
+                    dot.style.display = 'none';
+                }
+            });
+
+            cartCounts.forEach(count => {
+                count.textContent = `${totalItems} Ürün`;
+            });
+        }
+
+        // Sayfa yüklendiğinde sepeti yükle
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCart();
+            updateCartUI();
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Hakkımızda</h3>
+                <p>TrendyShop, AI teknolojisiyle kişiselleştirilmiş alışveriş deneyimi sunmaktadır. 2024'den beri milyonlarca müşteriye hizmet ediyoruz.</p>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Hızlı Linkler</h3>
+                <ul>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="seckiler.html">Sana Özel Seçkiler</a></li>
+                    <li><a href="oneri.html">Sana Özel Öneriler</a></li>
+                    <li><a href="orders.html">Siparişlerim</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Kategoriler</h3>
+                <ul>
+                    <li><a href="kadin.html">Kadın</a></li>
+                    <li><a href="erkek.html">Erkek</a></li>
+                    <li><a href="kozmetik.html">Kozmetik</a></li>
+                    <li><a href="ayakkabi.html">Ayakkabı</a></li>
+                    <li><a href="elektronik.html">Elektronik</a></li>
+                    <li><a href="evYasam.html">Ev & Yaşam</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Müşteri Hizmetleri</h3>
+                <ul>
+                    <li><a href="#iletisim">İletişim</a></li>
+                    <li><a href="#">Sıkça Sorulan Sorular</a></li>
+                    <li><a href="#">İade Politikası</a></li>
+                    <li><a href="#">Gizlilik Politikası</a></li>
+                    <li><a href="#">Kullanım Koşulları</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Bültene Abone Ol</h3>
+                <p>En yeni ürünler ve özel teklifler için e-posta adresini gir.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="E-posta adresin..." id="newsletter-email">
+                    <button onclick="subscribeNewsletter()">Abone Ol</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <span>Kabul Edilen Ödeme Yöntemleri:</span>
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-paypal"></i>
+            </div>
+            <p>&copy; 2024 TrendyShop Elite AI. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <!-- Contact Section Modal -->
+    <div id="contact-modal" class="contact-modal">
+        <div class="contact-modal-content">
+            <button class="contact-close" onclick="closeContactForm()">&times;</button>
+            <h2>Bize Ulaşın</h2>
+            <form onsubmit="sendContactForm(event)">
+                <input type="text" placeholder="Adınız" required>
+                <input type="email" placeholder="E-posta Adresiniz" required>
+                <input type="tel" placeholder="Telefon Numaranız">
+                <select required>
+                    <option value="">Konu Seçiniz</option>
+                    <option value="complaint">Şikayet</option>
+                    <option value="suggestion">Öneri</option>
+                    <option value="info">Bilgi</option>
+                    <option value="other">Diğer</option>
+                </select>
+                <textarea placeholder="Mesajınızı yazınız..." rows="6" required></textarea>
+                <button type="submit" class="submit-btn">Gönder</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html></content>
+<parameter name="filePath">c:\Users\utluu\OneDrive\Masaüstü\onlineAlisverisSist\sepet.html

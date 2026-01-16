@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ödeme | TrendyShop Elite AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .payment-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 40px;
+        }
+        .payment-form {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--elite-shadow);
+        }
+        .payment-header {
+            margin-bottom: 30px;
+        }
+        .payment-header h1 {
+            margin: 0 0 10px 0;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--deep-navy);
+        }
+        .payment-header p {
+            margin: 0;
+            color: var(--gray-400);
+        }
+        .form-section {
+            margin-bottom: 30px;
+        }
+        .form-section h3 {
+            margin: 0 0 15px 0;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--deep-navy);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--deep-navy);
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--electric-orange);
+        }
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .payment-method {
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .payment-method:hover,
+        .payment-method.selected {
+            border-color: var(--electric-orange);
+            background: rgba(255, 96, 0, 0.05);
+        }
+        .payment-method i {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: var(--deep-navy);
+        }
+        .payment-method span {
+            font-weight: 600;
+            color: var(--deep-navy);
+        }
+        .order-summary {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--elite-shadow);
+            height: fit-content;
+        }
+        .summary-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin-bottom: 20px;
+        }
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: var(--gray-600);
+        }
+        .summary-item.total {
+            border-top: 2px solid var(--gray-100);
+            padding-top: 15px;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--deep-navy);
+        }
+        .pay-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--electric-orange), #ff8533);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .pay-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 96, 0, 0.3);
+        }
+        .security-notice {
+            background: var(--gray-50);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--gray-600);
+        }
+        .security-notice i {
+            color: var(--electric-orange);
+            margin-right: 8px;
+        }
+        @media (max-width: 768px) {
+            .payment-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="elite-top-bar">
+        <div class="container-flex">
+            <span>🔒 Güvenli Ödeme</span>
+            <div class="top-nav-links">
+                <a href="sepet.html">Sepete Dön</a>
+                <a href="index.html">Ana Sayfa</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="glass-header">
+        <div class="container-flex nav-main">
+            <a href="index.html" class="elite-logo">Trendy<span>Shop</span></a>
+            <div class="ai-search-container">
+                <input type="text" placeholder="AI ile akıllı arama yapın...">
+                <button class="ai-search-btn"><i class="fas fa-wand-magic-sparkles"></i></button>
+            </div>
+            <div class="action-icons">
+                <div class="icon-group account-dropdown">
+                    <i class="far fa-user"></i><span>Hesabım</span>
+                    <div class="dropdown-content">
+                        <a href="login.html">Giriş Yap</a>
+                        <a href="register.html">Üye Ol</a>
+                        <hr>
+                        <a href="orders.html">Siparişlerim</a>
+                        <a href="ai-favorites.html">AI Favorilerim</a>
+                    </div>
+                </div>
+                <div class="icon-group favorites-dropdown">
+                    <i class="far fa-heart"></i>
+                    <span>Favoriler</span>
+                    <span class="favorites-dot">0</span>
+                    <div class="dropdown-content favorites-dropdown-content">
+                        <div class="dropdown-header">
+                            <h3>Favorilerim</h3>
+                            <span class="favorites-count">0 Ürün</span>
+                        </div>
+                        <div class="dropdown-items" id="favorites-list">
+                            <div class="empty-state">
+                                <i class="far fa-heart" style="font-size: 48px; color: var(--gray-400); margin-bottom: 15px;"></i>
+                                <p>Henüz favori ürününüz yok</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="icon-group cart cart-dropdown">
+                    <i class="fas fa-bag-shopping"></i>
+                    <span class="cart-dot">0</span>
+                    <span>Sepetim</span>
+                    <div class="dropdown-content cart-dropdown-content">
+                        <div class="dropdown-header">
+                            <h3>Sepetim</h3>
+                            <span class="cart-count">0 Ürün</span>
+                        </div>
+                        <div class="dropdown-items" id="cart-list">
+                            <div class="empty-state">
+                                <i class="fas fa-bag-shopping" style="font-size: 48px; color: var(--gray-400); margin-bottom: 15px;"></i>
+                                <p>Sepetiniz boş</p>
+                            </div>
+                        </div>
+                        <div class="dropdown-footer" id="cart-footer" style="display: none;">
+                            <div class="cart-total">
+                                <span>Toplam:</span>
+                                <span class="total-price">0 TL</span>
+                            </div>
+                            <button class="checkout-btn">Sepete Git</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="luxury-nav">
+        <div class="container-flex cat-list">
+            <a href="kadin.html">Kadın</a><a href="erkek.html">Erkek</a><a href="kozmetik.html">Kozmetik</a>
+            <a href="ayakkabi.html">Ayakkabı</a><a href="elektronik.html">Elektronik</a><a href="evYasam.html">Ev & Yaşam</a>
+            <a href="oneri.html" class="ai-link">Sana Özel Öneriler ✨</a>
+        </div>
+    </nav>
+
+    <main class="main-wrapper">
+        <div class="payment-container">
+            <div class="payment-form">
+                <div class="payment-header">
+                    <h1>Ödeme Bilgileri</h1>
+                    <p>Güvenli ödeme için bilgilerinizi girin</p>
+                </div>
+
+                <div class="form-section">
+                    <h3>İletişim Bilgileri</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Ad Soyad</label>
+                            <input type="text" placeholder="Adınız Soyadınız" required>
+                        </div>
+                        <div class="form-group">
+                            <label>E-posta</label>
+                            <input type="email" placeholder="ornek@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon</label>
+                        <input type="tel" placeholder="5XX XXX XX XX" required>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Teslimat Adresi</h3>
+                    <div class="form-group">
+                        <label>Adres</label>
+                        <input type="text" placeholder="Mahalle, Sokak, No" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>İl</label>
+                            <select required>
+                                <option value="">Seçin</option>
+                                <option>İstanbul</option>
+                                <option>Ankara</option>
+                                <option>İzmir</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>İlçe</label>
+                            <select required>
+                                <option value="">Seçin</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Posta Kodu</label>
+                        <input type="text" placeholder="34000" required>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Ödeme Yöntemi</h3>
+                    <div class="payment-methods">
+                        <div class="payment-method selected" data-method="credit-card">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Kredi Kartı</span>
+                        </div>
+                        <div class="payment-method" data-method="bank-transfer">
+                            <i class="fas fa-university"></i>
+                            <span>Havale/EFT</span>
+                        </div>
+                        <div class="payment-method" data-method="paypal">
+                            <i class="fab fa-paypal"></i>
+                            <span>PayPal</span>
+                        </div>
+                    </div>
+
+                    <div id="credit-card-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Kart Numarası</label>
+                                <input type="text" placeholder="1234 5678 9012 3456" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Son Kullanma Tarihi</label>
+                                <input type="text" placeholder="MM/YY" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>CVV</label>
+                                <input type="text" placeholder="123" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Kart Üzerindeki İsim</label>
+                                <input type="text" placeholder="AD SOYAD" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="security-notice">
+                    <i class="fas fa-shield-alt"></i>
+                    <strong>Güvenli Ödeme:</strong> Tüm işlemleriniz SSL sertifikası ile korunmaktadır.
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <div class="summary-title">Sipariş Özeti</div>
+
+                <div id="order-items">
+                    <!-- Sepetteki ürünler burada listelenecek -->
+                </div>
+
+                <div class="summary-item">
+                    <span>Ara Toplam</span>
+                    <span id="subtotal">0 TL</span>
+                </div>
+                <div class="summary-item">
+                    <span>Kargo</span>
+                    <span id="shipping">Ücretsiz</span>
+                </div>
+                <div class="summary-item total">
+                    <span>Toplam</span>
+                    <span id="total">0 TL</span>
+                </div>
+
+                <button class="pay-btn" onclick="completePayment()">Ödemeyi Tamamla</button>
+
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="sepet.html" style="color: var(--gray-400); text-decoration: none; font-size: 14px;">
+                        <i class="fas fa-arrow-left" style="margin-right: 5px;"></i>
+                        Sepete Dön
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Sepet verilerini localStorage'dan yükle
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function loadOrderSummary() {
+            const orderItems = document.getElementById('order-items');
+            const subtotal = document.getElementById('subtotal');
+            const total = document.getElementById('total');
+
+            if (cart.length === 0) {
+                window.location.href = 'sepet.html';
+                return;
+            }
+
+            let totalPrice = 0;
+
+            orderItems.innerHTML = cart.map(item => {
+                totalPrice += item.price * item.quantity;
+                return `
+                    <div class="summary-item">
+                        <span>${item.name} x${item.quantity}</span>
+                        <span>${(item.price * item.quantity).toLocaleString('tr-TR')} TL</span>
+                    </div>
+                `;
+            }).join('');
+
+            subtotal.textContent = `${totalPrice.toLocaleString('tr-TR')} TL`;
+            total.textContent = `${totalPrice.toLocaleString('tr-TR')} TL`;
+        }
+
+        function completePayment() {
+            // Form validasyonları
+            const requiredFields = document.querySelectorAll('input[required], select[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#e53e3e';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = 'var(--gray-200)';
+                }
+            });
+
+            if (!isValid) {
+                alert('Lütfen tüm zorunlu alanları doldurun.');
+                return;
+            }
+
+            // Ödeme işlemi simülasyonu
+            alert('Ödeme işlemi başlatılıyor...');
+
+            setTimeout(() => {
+                // Başarılı ödeme simülasyonu
+                alert('Ödeme başarılı! Siparişiniz alındı.');
+
+                // Sepeti temizle
+                localStorage.removeItem('cart');
+
+                // Siparişler sayfasına yönlendir
+                window.location.href = 'orders.html';
+            }, 2000);
+        }
+
+        // Ödeme yöntemleri seçimi
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Sayfa yüklendiğinde sipariş özetini yükle
+        document.addEventListener('DOMContentLoaded', function() {
+            loadOrderSummary();
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Hakkımızda</h3>
+                <p>TrendyShop, AI teknolojisiyle kişiselleştirilmiş alışveriş deneyimi sunmaktadır. 2024'den beri milyonlarca müşteriye hizmet ediyoruz.</p>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Hızlı Linkler</h3>
+                <ul>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="seckiler.html">Sana Özel Seçkiler</a></li>
+                    <li><a href="oneri.html">Sana Özel Öneriler</a></li>
+                    <li><a href="orders.html">Siparişlerim</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Kategoriler</h3>
+                <ul>
+                    <li><a href="kadin.html">Kadın</a></li>
+                    <li><a href="erkek.html">Erkek</a></li>
+                    <li><a href="kozmetik.html">Kozmetik</a></li>
+                    <li><a href="ayakkabi.html">Ayakkabı</a></li>
+                    <li><a href="elektronik.html">Elektronik</a></li>
+                    <li><a href="evYasam.html">Ev & Yaşam</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Müşteri Hizmetleri</h3>
+                <ul>
+                    <li><a href="#iletisim">İletişim</a></li>
+                    <li><a href="#">Sıkça Sorulan Sorular</a></li>
+                    <li><a href="#">İade Politikası</a></li>
+                    <li><a href="#">Gizlilik Politikası</a></li>
+                    <li><a href="#">Kullanım Koşulları</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Bültene Abone Ol</h3>
+                <p>En yeni ürünler ve özel teklifler için e-posta adresini gir.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="E-posta adresin..." id="newsletter-email">
+                    <button onclick="subscribeNewsletter()">Abone Ol</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <span>Kabul Edilen Ödeme Yöntemleri:</span>
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-paypal"></i>
+            </div>
+            <p>&copy; 2024 TrendyShop Elite AI. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <!-- Contact Section Modal -->
+    <div id="contact-modal" class="contact-modal">
+        <div class="contact-modal-content">
+            <button class="contact-close" onclick="closeContactForm()">&times;</button>
+            <h2>Bize Ulaşın</h2>
+            <form onsubmit="sendContactForm(event)">
+                <input type="text" placeholder="Adınız" required>
+                <input type="email" placeholder="E-posta Adresiniz" required>
+                <input type="tel" placeholder="Telefon Numaranız">
+                <select required>
+                    <option value="">Konu Seçiniz</option>
+                    <option value="complaint">Şikayet</option>
+                    <option value="suggestion">Öneri</option>
+                    <option value="info">Bilgi</option>
+                    <option value="other">Diğer</option>
+                </select>
+                <textarea placeholder="Mesajınızı yazınız..." rows="6" required></textarea>
+                <button type="submit" class="submit-btn">Gönder</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html></content>
+<parameter name="filePath">c:\Users\utluu\OneDrive\Masaüstü\onlineAlisverisSist\payment.html

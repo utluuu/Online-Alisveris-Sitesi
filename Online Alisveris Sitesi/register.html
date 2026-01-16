@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Üye Ol | TrendyShop Elite AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .auth-page-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            background: var(--gray-100);
+        }
+        .auth-page-content {
+            background: white;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 450px;
+            padding: 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .auth-page-header {
+            background: linear-gradient(135deg, var(--electric-orange), #ff8533);
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
+        .auth-page-header h1 {
+            margin: 0 0 10px 0;
+            font-size: 32px;
+            font-weight: 800;
+        }
+        .auth-page-header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        .auth-page-body {
+            padding: 40px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--electric-orange);
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .back-link:hover {
+            gap: 12px;
+        }
+        .auth-switch-link {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid var(--gray-100);
+            color: var(--gray-400);
+            font-size: 14px;
+        }
+        .auth-switch-link a {
+            color: var(--electric-orange);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .auth-switch-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="elite-top-bar">
+        <div class="container-flex">
+            <span>✨ Yeni Üyelere Özel İndirimler</span>
+            <div class="top-nav-links">
+                <a href="index.html">Ana Sayfa</a>
+                <a href="login.html" class="ai-mode">Zaten üye misin? <strong>Giriş Yap</strong></a>
+            </div>
+        </div>
+    </div>
+
+    <header class="glass-header">
+        <div class="container-flex nav-main">
+            <a href="index.html" class="elite-logo">Trendy<span>Shop</span></a>
+            <div class="ai-search-container">
+                <input type="text" placeholder="AI ile akıllı arama yapın...">
+                <button class="ai-search-btn"><i class="fas fa-wand-magic-sparkles"></i></button>
+            </div>
+            <div class="action-icons">
+                <div class="icon-group account-dropdown">
+                    <i class="far fa-user"></i><span>Hesabım</span>
+                    <div class="dropdown-content">
+                        <a href="login.html">Giriş Yap</a>
+                        <a href="register.html">Üye Ol</a>
+                        <hr>
+                        <a href="orders.html">Siparişlerim</a>
+                        <a href="ai-favorites.html">AI Favorilerim</a>
+                    </div>
+                </div>
+                <div class="icon-group favorites-dropdown">
+                    <i class="far fa-heart"></i>
+                    <span>Favoriler</span>
+                    <span class="favorites-dot">0</span>
+                    <div class="dropdown-content favorites-dropdown-content">
+                        <div class="dropdown-header">
+                            <h3>Favorilerim</h3>
+                            <span class="favorites-count">0 Ürün</span>
+                        </div>
+                        <div class="dropdown-items" id="favorites-list">
+                            <div class="empty-state">
+                                <i class="far fa-heart" style="font-size: 48px; color: var(--gray-400); margin-bottom: 15px;"></i>
+                                <p>Henüz favori ürününüz yok</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="icon-group cart cart-dropdown">
+                    <i class="fas fa-bag-shopping"></i>
+                    <span class="cart-dot">0</span>
+                    <span>Sepetim</span>
+                    <div class="dropdown-content cart-dropdown-content">
+                        <div class="dropdown-header">
+                            <h3>Sepetim</h3>
+                            <span class="cart-count">0 Ürün</span>
+                        </div>
+                        <div class="dropdown-items" id="cart-list">
+                            <div class="empty-state">
+                                <i class="fas fa-bag-shopping" style="font-size: 48px; color: var(--gray-400); margin-bottom: 15px;"></i>
+                                <p>Sepetiniz boş</p>
+                            </div>
+                        </div>
+                        <div class="dropdown-footer" id="cart-footer" style="display: none;">
+                            <div class="cart-total">
+                                <span>Toplam:</span>
+                                <span class="total-price">0 TL</span>
+                            </div>
+                            <button class="checkout-btn">Sepete Git</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="auth-page-container">
+        <div class="auth-page-content">
+            <div class="auth-page-header">
+                <h1>Üye Ol</h1>
+                <p>AI destekli kişiselleştirilmiş alışverişe başlayın</p>
+            </div>
+            <div class="auth-page-body">
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Ana Sayfaya Dön
+                </a>
+                
+                <form id="registerForm" onsubmit="return handleRegister(event)">
+                    <div class="form-group">
+                        <input type="text" id="registerName" placeholder="Ad Soyad" required>
+                        <span class="form-error" id="registerNameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="registerEmail" placeholder="E-posta Adresi" required>
+                        <span class="form-error" id="registerEmailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="registerPassword" placeholder="Şifre (Min. 6 karakter)" required minlength="6">
+                        <span class="form-error" id="registerPasswordError"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="registerPhone" placeholder="Telefon Numarası (5XX XXX XX XX)" required>
+                        <span class="form-error" id="registerPhoneError"></span>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="acceptTerms" required>
+                            <span><a href="#" onclick="event.preventDefault();">Kullanım Koşulları</a> ve <a href="#" onclick="event.preventDefault();">Gizlilik Politikası</a>'nı okudum, kabul ediyorum.</span>
+                        </label>
+                        <span class="form-error" id="termsError"></span>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="acceptPromotions">
+                            <span>Kampanya ve fırsatlardan haberdar olmak istiyorum</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="auth-submit-btn">Üye Ol</button>
+                </form>
+                
+                <div class="auth-divider">
+                    <span>veya</span>
+                </div>
+                
+                <button type="button" class="social-login-btn" onclick="alert('Google ile kayıt özelliği yakında eklenecek!')">
+                    <i class="fab fa-google"></i>
+                    Google ile Üye Ol
+                </button>
+                
+                <div class="auth-switch-link">
+                    Zaten üye misin? <a href="login.html">Giriş Yap</a>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--gray-100);">
+                    <a href="index.html" style="color: var(--gray-400); text-decoration: none; font-size: 14px;">
+                        <i class="fas fa-home" style="margin-right: 8px;"></i>
+                        Ana Sayfaya Dön
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = 'position: fixed; top: 100px; right: 20px; background: #FF6000; color: white; padding: 15px 25px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); z-index: 3000; font-weight: 600;';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(function() {
+                notification.remove();
+            }, 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const phoneInput = document.getElementById('registerPhone');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length > 0) {
+                        if (value.length <= 3) {
+                            value = value;
+                        } else if (value.length <= 6) {
+                            value = value.slice(0, 3) + ' ' + value.slice(3);
+                        } else if (value.length <= 8) {
+                            value = value.slice(0, 3) + ' ' + value.slice(3, 6) + ' ' + value.slice(6);
+                        } else {
+                            value = value.slice(0, 3) + ' ' + value.slice(3, 6) + ' ' + value.slice(6, 8) + ' ' + value.slice(8, 10);
+                        }
+                        e.target.value = value;
+                    }
+                });
+            }
+        });
+
+        function validatePassword(password) {
+            if (password.length < 6) return { valid: false, message: 'Şifre en az 6 karakter olmalı' };
+            if (password.length > 50) return { valid: false, message: 'Şifre çok uzun (max 50 karakter)' };
+            return { valid: true, message: '' };
+        }
+        
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email) return { valid: false, message: 'E-posta adresi gerekli' };
+            if (!emailRegex.test(email)) return { valid: false, message: 'Geçerli bir e-posta adresi girin' };
+            if (email.length > 100) return { valid: false, message: 'E-posta adresi çok uzun' };
+            return { valid: true, message: '' };
+        }
+        
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const nameEl = document.getElementById('registerName');
+            const emailEl = document.getElementById('registerEmail');
+            const passwordEl = document.getElementById('registerPassword');
+            const phoneEl = document.getElementById('registerPhone');
+            const acceptTermsEl = document.getElementById('acceptTerms');
+            const termsErrorEl = document.getElementById('termsError');
+            
+            const name = nameEl.value.trim();
+            const email = emailEl.value.trim();
+            const password = passwordEl.value;
+            const phone = phoneEl.value.trim();
+            const acceptTerms = acceptTermsEl ? acceptTermsEl.checked : false;
+            
+            document.querySelectorAll('.form-error').forEach(function(err) {
+                err.textContent = '';
+            });
+            document.querySelectorAll('input').forEach(function(inp) {
+                inp.classList.remove('error');
+            });
+            
+            let hasError = false;
+            
+            if (!name || name.length < 3) {
+                document.getElementById('registerNameError').textContent = 'Ad Soyad en az 3 karakter olmalı';
+                nameEl.classList.add('error');
+                hasError = true;
+            } else if (name.length > 100) {
+                document.getElementById('registerNameError').textContent = 'Ad Soyad çok uzun (max 100 karakter)';
+                nameEl.classList.add('error');
+                hasError = true;
+            }
+            
+            const emailValidation = validateEmail(email);
+            if (!emailValidation.valid) {
+                document.getElementById('registerEmailError').textContent = emailValidation.message;
+                emailEl.classList.add('error');
+                hasError = true;
+            }
+            
+            const passwordValidation = validatePassword(password);
+            if (!passwordValidation.valid) {
+                document.getElementById('registerPasswordError').textContent = passwordValidation.message;
+                passwordEl.classList.add('error');
+                hasError = true;
+            }
+            
+            const phoneClean = phone.replace(/\D/g, '');
+            if (!phone || !/^5\d{9}$/.test(phoneClean)) {
+                document.getElementById('registerPhoneError').textContent = 'Geçerli bir telefon numarası girin (5XX XXX XX XX)';
+                phoneEl.classList.add('error');
+                hasError = true;
+            }
+            
+            if (!acceptTerms) {
+                termsErrorEl.textContent = 'Kullanım koşullarını kabul etmelisiniz';
+                hasError = true;
+            }
+            
+            if (hasError) {
+                return false;
+            }
+            
+            try {
+                const usersStr = localStorage.getItem('users');
+                const users = usersStr ? JSON.parse(usersStr) : [];
+                
+                const existingUser = users.find(function(u) { return u.email.toLowerCase() === email.toLowerCase(); });
+                if (existingUser) {
+                    document.getElementById('registerEmailError').textContent = 'Bu e-posta adresi zaten kayıtlı';
+                    emailEl.classList.add('error');
+                    return false;
+                }
+                
+                const newUser = {
+                    id: Date.now().toString(),
+                    name: name,
+                    email: email.toLowerCase(),
+                    password: password,
+                    phone: phoneClean,
+                    createdAt: new Date().toISOString()
+                };
+                
+                users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(users));
+                localStorage.setItem('currentUser', JSON.stringify(newUser));
+                
+                showNotification('Hoş geldiniz, ' + name.split(' ')[0] + '! Kayıt işleminiz başarıyla tamamlandı.');
+                setTimeout(function() {
+                    window.location.href = 'index.html';
+                }, 1500);
+                return false;
+            } catch (e) {
+                console.error('Register error:', e);
+                alert('Bir hata oluştu. Lütfen tekrar deneyin.');
+                return false;
+            }
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Hakkımızda</h3>
+                <p>TrendyShop, AI teknolojisiyle kişiselleştirilmiş alışveriş deneyimi sunmaktadır. 2024'den beri milyonlarca müşteriye hizmet ediyoruz.</p>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Hızlı Linkler</h3>
+                <ul>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="seckiler.html">Sana Özel Seçkiler</a></li>
+                    <li><a href="oneri.html">Sana Özel Öneriler</a></li>
+                    <li><a href="orders.html">Siparişlerim</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Kategoriler</h3>
+                <ul>
+                    <li><a href="kadin.html">Kadın</a></li>
+                    <li><a href="erkek.html">Erkek</a></li>
+                    <li><a href="kozmetik.html">Kozmetik</a></li>
+                    <li><a href="ayakkabi.html">Ayakkabı</a></li>
+                    <li><a href="elektronik.html">Elektronik</a></li>
+                    <li><a href="evYasam.html">Ev & Yaşam</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Müşteri Hizmetleri</h3>
+                <ul>
+                    <li><a href="#iletisim">İletişim</a></li>
+                    <li><a href="#">Sıkça Sorulan Sorular</a></li>
+                    <li><a href="#">İade Politikası</a></li>
+                    <li><a href="#">Gizlilik Politikası</a></li>
+                    <li><a href="#">Kullanım Koşulları</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Bültene Abone Ol</h3>
+                <p>En yeni ürünler ve özel teklifler için e-posta adresini gir.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="E-posta adresin..." id="newsletter-email">
+                    <button onclick="subscribeNewsletter()">Abone Ol</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <span>Kabul Edilen Ödeme Yöntemleri:</span>
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-paypal"></i>
+            </div>
+            <p>&copy; 2024 TrendyShop Elite AI. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <!-- Contact Section Modal -->
+    <div id="contact-modal" class="contact-modal">
+        <div class="contact-modal-content">
+            <button class="contact-close" onclick="closeContactForm()">&times;</button>
+            <h2>Bize Ulaşın</h2>
+            <form onsubmit="sendContactForm(event)">
+                <input type="text" placeholder="Adınız" required>
+                <input type="email" placeholder="E-posta Adresiniz" required>
+                <input type="tel" placeholder="Telefon Numaranız">
+                <select required>
+                    <option value="">Konu Seçiniz</option>
+                    <option value="complaint">Şikayet</option>
+                    <option value="suggestion">Öneri</option>
+                    <option value="info">Bilgi</option>
+                    <option value="other">Diğer</option>
+                </select>
+                <textarea placeholder="Mesajınızı yazınız..." rows="6" required></textarea>
+                <button type="submit" class="submit-btn">Gönder</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
